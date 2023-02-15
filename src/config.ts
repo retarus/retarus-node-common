@@ -1,11 +1,13 @@
 import { Region } from "./region";
 
 
+
 class Configuration {
     static instance: Configuration
     
     region: Region | undefined;
     auth: any | undefined;
+    customerNumber: string | undefined;
 
     private constructor(region: any = undefined, auth: any = undefined) {
         this.region = region;
@@ -23,10 +25,10 @@ class Configuration {
         this.region = region;
     }
     public setAuth(username: string, password: string): void {
-        let concatenating = username + password;
-        let encodedToken = Buffer.from(concatenating)
+        let concatenating = username + ':' + password;
+        let encodedToken = btoa(concatenating)
 
-        this.auth = {"Authorization": "Basic " + encodedToken, "Content-Type": "application/json"}
+        this.auth = {"Authorization": "Basic " + encodedToken.toString(), "Content-Type": "application/json"}
     }
 }
 

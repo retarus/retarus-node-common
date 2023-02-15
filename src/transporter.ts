@@ -4,10 +4,12 @@ import axios from 'axios';
 
 import RetarusResponse from "./response";
 
-class Transporter {
-    serviceUriRegions: [RegionUri];
 
-    constructor(uri: [RegionUri]) {
+
+class Transporter {
+    serviceUriRegions: RegionUri[];
+
+    constructor(uri: RegionUri[]) {
         this.serviceUriRegions = uri;
     }
 
@@ -27,7 +29,7 @@ class Transporter {
             return region
         }
         let url = region.data.haUri + "/rest/v1" + path;
-        console.log
+        console.log(url);
         let config = {
             method: "post",
             url: url,
@@ -46,7 +48,6 @@ class Transporter {
             response.error = true;
             response.message = error.message;
         })
-
         return response;
     }
 
@@ -64,7 +65,6 @@ class Transporter {
         if (region.error) {
             return region
         }
-
         let config = {
         method: "get",
         url: "",

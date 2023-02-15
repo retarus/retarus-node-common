@@ -1,5 +1,4 @@
 
-
 class RetarusResponse {
     error: boolean;
     message: string;

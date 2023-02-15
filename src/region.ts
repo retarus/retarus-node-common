@@ -1,7 +1,7 @@
 import RetarusResponse from "./response";
 
 
-export enum Region {
+enum Region {
     Europe, 
     America,
     Switzerland,
@@ -9,7 +9,7 @@ export enum Region {
     Custom
 }
 
-export class RegionUri {
+class RegionUri {
     region: Region;
     haUri: string;
     urls: string[]
@@ -20,7 +20,7 @@ export class RegionUri {
     }
 }
 
-export function resolveRegion(selectedRegion: Region, regionUris: [RegionUri]) : RetarusResponse {
+function resolveRegion(selectedRegion: Region, regionUris: RegionUri[]) : RetarusResponse {
     for (var i = 0; i < regionUris.length; i++) {
         if (regionUris[i].region === selectedRegion){
             return new RetarusResponse(false, "", regionUris[i]);
@@ -28,3 +28,6 @@ export function resolveRegion(selectedRegion: Region, regionUris: [RegionUri]) :
     }
     return new RetarusResponse(true, "The current region is not available for that service");
 }
+
+
+export { Region, RegionUri, resolveRegion }

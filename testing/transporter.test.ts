@@ -8,6 +8,7 @@ describe("test transporter methods", () => {
     beforeAll(() => server.listen())
     afterEach(() => server.resetHandlers())
     afterAll(() => server.close())
+    
     test("get request", async () => {
         let uri = new RegionUri(Region.Europe, "", ["http://example.com"]);
         Configuration.getInstance().setRegion(Region.Europe);
