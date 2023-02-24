@@ -29,7 +29,7 @@ class Transporter {
             return region
         }
         let url = region.data.haUri + "/rest/v1" + path;
-        console.log(url);
+        console.debug(url);
         let config = {
             method: "post",
             url: url,
@@ -39,7 +39,7 @@ class Transporter {
             };
         config["Content-Type"] = "application/json";
         await axios(config).then((result) => {
-            if (result.status === 200) {
+            if (result.status === 200 || result.status === 201) {
                 response.error = false;
                 response.data = result.data;
                 return response;
@@ -117,6 +117,7 @@ async function fetchDatacenter(urls: string[], path: string, config) : Promise<R
         let url = urls[i] + "/rest/v1" + path;
 
         config.url = url;
+        console.debug(url);
         await axios(config).then((result) => {
             console.debug(result.status);
             if (result.status === 200) {

@@ -1,0 +1,11 @@
+name: retarus_sdk_node_common
+
+on:
+  push:
+    branches: [ master, dev ]
+  pull_request:
+    branches: [ master, dev ]
+
+jobs:
+  testing:
+    runs-on: ubuntu-latest
