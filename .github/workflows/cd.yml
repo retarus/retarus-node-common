@@ -1,0 +1,38 @@
+name: release action for nodejs fax sdk
+
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  deploy:
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }} 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Set Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+      
+      - run: mkdir -p  ~/download-art
+      - uses: actions/download-artifact@v2
+        with:
+          path: retarus-common-*
+          name: ci_node_common
+
+      - name: Upload to npmjs
+        run: |
+          npm set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+          npm publish retarus-common-v*.tgz --dry-run
+
+      - uses: geekyeggo/delete-artifact@v2
+        with:
+          name: retarus-common-*
+      # - name: Create gh release
+      #   uses: softprops/action-gh-release@v1

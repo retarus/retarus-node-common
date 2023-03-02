@@ -1,11 +1,63 @@
-name: retarus_sdk_node_common
+name: ci
 
 on:
   push:
-    branches: [ master, dev ]
+    branches: [ main, dev ]
   pull_request:
-    branches: [ master, dev ]
+    branches: [ main, dev ]
 
 jobs:
   testing:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: install yarn
+        run: |
+          curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+          echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+          sudo apt update && sudo apt install yarn -y
+      
+      - name: install dependencies
+        run: |
+          npm install -g add typescript
+          yarn install
+
+      - name: verify test cases
+        run: yarn test
+
+  build:
+    needs: testing
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set Node.js 16.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16.x
+
+      - name: install yarn
+        run: |
+          curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+          echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+          sudo apt update && sudo apt install yarn -y
+      
+      - name: install dependencies
+        run: yarn
+
+      - name: build package
+        run: yarn compile
+
+      - name: bundle package
+        run: yarn pack
+
+      - uses: actions/upload-artifact@v2
+        with:
+          path: retarus-common-*
+          name: ci_node_common
+
+      

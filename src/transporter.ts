@@ -30,7 +30,7 @@ class Transporter {
         }
         let url = region.data.haUri + "/rest/v1" + path;
         console.debug(url);
-        let config = {
+        let config: any = {
             method: "post",
             url: url,
             data: payload,
@@ -52,7 +52,7 @@ class Transporter {
     }
 
 
-    public async get(path: string, queryParms) : Promise<RetarusResponse> {
+    public async get(path: string, queryParms: any) : Promise<RetarusResponse> {
         // validate if the library is properly configured        
         let validation = this.validateConfig();
         if (validation.error) {
@@ -110,7 +110,7 @@ class Transporter {
     // todo implement response matcher, to correctly handle issues or problems which can occur.
 }
 
-async function fetchDatacenter(urls: string[], path: string, config) : Promise<RetarusResponse> {
+async function fetchDatacenter(urls: string[], path: string, config: any) : Promise<RetarusResponse> {
     let response = new RetarusResponse();
 
     for (var i = 0; i < urls.length; i++) {
