@@ -58,7 +58,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
       - uses: actions/upload-artifact@v2
         with:
-          path: retarus-common-*
-          name: ci_node_common
+          path: retarus-common-v*.tgz
+          name: ${{GITHUB_SHA}}-ci_node_common
 
       
