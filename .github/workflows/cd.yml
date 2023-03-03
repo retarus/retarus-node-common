@@ -24,7 +24,7 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           path: retarus-common
-          name: ${{GITHUB_SHA}}-ci_node_common
+          name: ${{ github.sha }}-ci_node_common
 
       - name: Upload to npmjs
         run: |
@@ -33,6 +33,6 @@ jobs:
 
       - uses: geekyeggo/delete-artifact@v2
         with:
-          name: ${{GITHUB_SHA}}-ci_node_common
+          name: ${{ github.sha }}-ci_node_common
       # - name: Create gh release
       #   uses: softprops/action-gh-release@v1

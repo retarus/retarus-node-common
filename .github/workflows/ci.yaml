@@ -59,6 +59,6 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           path: retarus-common-v*.tgz
-          name: ${{GITHUB_SHA}}-ci_node_common
+          name: ${{ github.sha }}-ci_node_common
 
       
