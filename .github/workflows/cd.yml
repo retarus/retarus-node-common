@@ -24,6 +24,7 @@ jobs:
       - name: Download artifact
         uses: dawidd6/action-download-artifact@v2.26.0
         with:
+          github_token: ${{secrets.gh_token}}
           name: ${{ github.sha }}-ci_node_common
 
       - name: Upload to npmjs
