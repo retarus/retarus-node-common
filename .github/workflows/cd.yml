@@ -31,6 +31,7 @@ jobs:
       - name: Upload to npmjs
         run: |
           npm set //registry.npmjs.org/:_authToken=$NPM_TOKEN
-          npm publish retarus-common-*.tgz --dry-run
-      # - name: Create gh release
-      #   uses: softprops/action-gh-release@v1
+          npm publish retarus-common-*.tgz
+      
+      - name: Create gh release
+        uses: softprops/action-gh-release@v1
