@@ -24,7 +24,7 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           path: retarus-common-*
-          name: ci_node_common
+          name: ci_node_common-*
 
       - name: Upload to npmjs
         run: |
