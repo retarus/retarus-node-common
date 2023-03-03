@@ -1,8 +1,8 @@
 {
   "name": "@retarus/common",
   "version": "0.1.0",
-  "description": "Retarus commons implementation for javascript",
-  "author": "Retarus GmbH",
+  "description": "Retarus commons implementation for node",
+  "author": "Retarus GmbH <developers@retarus.com>",
   "main": "dist/src/index.js",
   "types": "dist/src/index.d.ts",
   "files": [

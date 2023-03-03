@@ -55,6 +55,7 @@ jobs:
       - name: bundle package
         run: yarn pack
 
+        if: github.ref == 'refs/heads/main'
       - uses: actions/upload-artifact@v2
         with:
           path: retarus-common-*

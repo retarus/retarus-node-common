@@ -23,16 +23,16 @@ jobs:
       - run: mkdir -p  ~/download-art
       - uses: actions/download-artifact@v2
         with:
-          path: retarus-common-*
-          name: ci_node_common-*
+          path: retarus-common
+          name: ci_node_common
 
       - name: Upload to npmjs
         run: |
           npm set //registry.npmjs.org/:_authToken=$NPM_TOKEN
-          npm publish retarus-common-v*.tgz --dry-run
+          npm publish retarus-common-*.tgz --dry-run
 
       - uses: geekyeggo/delete-artifact@v2
         with:
-          name: retarus-common-*
+          name: retarus-common
       # - name: Create gh release
       #   uses: softprops/action-gh-release@v1
