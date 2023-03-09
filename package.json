@@ -1,6 +1,6 @@
 {
   "name": "@retarus/common",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Retarus commons implementation for node",
   "author": "Retarus GmbH <developers@retarus.com>",
   "main": "dist/src/index.js",

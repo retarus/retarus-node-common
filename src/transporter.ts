@@ -29,7 +29,6 @@ class Transporter {
             return region
         }
         let url = region.data.haUri + "/rest/v1" + path;
-        console.debug(url);
         let config: any = {
             method: "post",
             url: url,
@@ -117,9 +116,7 @@ async function fetchDatacenter(urls: string[], path: string, config: any) : Prom
         let url = urls[i] + "/rest/v1" + path;
 
         config.url = url;
-        console.debug(url);
         await axios(config).then((result) => {
-            console.debug(result.status);
             if (result.status === 200) {
                 response.error = false;
                 response.data = result.data;                
@@ -133,7 +130,6 @@ async function fetchDatacenter(urls: string[], path: string, config: any) : Prom
                 response.error = false;
                 response.message = "404"
             }
-            console.debug("ERROR")
             response.error = true;
             response.message = error.data; })
         if (response.message === "404" && urls.length != i + 1) {

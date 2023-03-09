@@ -1,4 +1,4 @@
-name: release action for nodejs fax sdk
+name: release
 
 
 on:
