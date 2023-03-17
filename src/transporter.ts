@@ -1,9 +1,8 @@
 import Configuration from './config';
-import { RegionUri, resolveRegion } from './region';
+import {RegionUri, resolveRegion} from './region';
 import axios from 'axios';
 
 import RetarusResponse from "./response";
-
 
 
 class Transporter {
@@ -71,8 +70,7 @@ class Transporter {
         params: queryParms
         };
 
-        let res = await fetchDatacenter(region.data.urls, path, config)
-        return res;
+        return await fetchDatacenter(region.data.urls, path, config);
     }
     public async delete(path: string) : Promise<RetarusResponse> {
         // validate if the library is properly configured        
@@ -93,16 +91,15 @@ class Transporter {
         url: "",
         headers: Configuration.getInstance().auth,
         };
-        let res = await fetchDatacenter(region.data.urls, path, config)
-        return res;
+        return await fetchDatacenter(region.data.urls, path, config);
     }
 
     private validateConfig(): RetarusResponse {
         if (Configuration.getInstance().auth === undefined) {
-            return new RetarusResponse(true, "You need to set the credentails using the set_auth() function in the Confugration class");
+            return new RetarusResponse(true, "You need to set the credentials using the set_auth() function in the Configuration class");
         }
         if (Configuration.getInstance().region === undefined) {
-            return new RetarusResponse(true, "You need to set the region using the set_region() function in the Confugration class");
+            return new RetarusResponse(true, "You need to set the region using the set_region() function in the Configuration class");
         }
         return new RetarusResponse(false);
     }
@@ -113,9 +110,7 @@ async function fetchDatacenter(urls: string[], path: string, config: any) : Prom
     let response = new RetarusResponse();
 
     for (var i = 0; i < urls.length; i++) {
-        let url = urls[i] + "/rest/v1" + path;
-
-        config.url = url;
+        config.url = urls[i] + "/rest/v1" + path;
         await axios(config).then((result) => {
             if (result.status === 200) {
                 response.error = false;
@@ -145,7 +140,7 @@ async function fetchDatacenter(urls: string[], path: string, config: any) : Prom
     if (!response.error) {
         return response;
     }
-    response.message = "Ressource not found | 404"
+    response.message = "Resource not found | 404"
     return response;
 }
 

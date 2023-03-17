@@ -1,5 +1,5 @@
 import Configuration from "../src/config";
-import { Region, RegionUri } from "../src/region";
+import { Region, RegionUri } from "../src";
 import Transporter from "../src/transporter";
 import { server } from "./mocks/server"
 

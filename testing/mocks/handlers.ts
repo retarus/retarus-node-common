@@ -1,4 +1,4 @@
-import { response, rest } from 'msw';
+import { rest } from 'msw';
 
 export const handlers = [
     rest.get("http://example.com/rest/v1/get/test1", (req, res, ctx) => {
